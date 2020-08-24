@@ -1,0 +1,9 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.info{
+  @include blockContent(25vh,25vh);
+}
+.startBtn{
+ @include buttons;
+}
+

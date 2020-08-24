@@ -1,0 +1,13 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.footer{
+  @include blockParams;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.exitBtn{
+  @include buttons;
+  background-color: $bgColor;
+  border: none;
+}

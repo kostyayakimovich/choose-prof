@@ -1,0 +1,35 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.header{
+  @include blockParams;
+  color: $textColor;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.logo-2 {
+  display: inline-block;
+  color: $bgLinks;
+  -webkit-transform: rotate(-10deg); //Chrome, Safari
+-moz-transform: rotate(-10deg); //Firefox
+-o-transform: rotate(-10deg); //Opera
+-ms-transform: rotate(-10deg); //IE
+transform: rotate(-10deg); //браузеры без префексов
+}
+.logo:hover{
+  .logo-2{
+  -webkit-transform: rotate(0deg); //Chrome, Safari
+  -moz-transform: rotate(0deg); //Firefox
+  -o-transform: rotate(0deg); //Opera
+  -ms-transform: rotate(0deg); //IE
+  transform: rotate(0deg); //браузеры без префексов
+}}
+
+.logo{
+  cursor: pointer;
+}
+.navigation{
+  
+  @include links;
+  
+}

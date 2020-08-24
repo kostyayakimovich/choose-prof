@@ -1,0 +1,21 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.accounting{
+  @include blockContent(20px,20px);
+}
+.checkCategory{
+  display:flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.selectCategoryBlock{
+  display: flex;
+  flex-direction: column;
+  margin: 10px 0;
+}
+.createBtn{
+  @include buttons;
+  margin-top: 20px;
+  width: 140px;
+  height: 40px;
+}

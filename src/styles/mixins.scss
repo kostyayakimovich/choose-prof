@@ -1,0 +1,77 @@
+@import "variables";
+@mixin blockParams {
+margin: 0 40px 20px 40px;
+  }
+
+  @mixin blockContent ($marginTop, $marginBot) {
+    @include blockParams();
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: $bgBlock;
+    padding: 20px;
+    margin-top: $marginTop;
+    margin-bottom: $marginBot;
+    text-align: center;
+  }
+
+@mixin links {
+  background-color: $bgLinks;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+list-style: none;
+padding: 0;
+border-radius: 5px;
+li{
+  cursor: pointer;
+  margin: 10px;  
+}
+li:hover{
+  color:  $hoverColor;
+  }
+}
+
+@mixin buttons {  
+    width: 100px;
+    height: 30px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid $bgLinks;
+    border-radius: 5px;
+    cursor: pointer;
+    padding:0 5px;
+    text-align: center;
+    background: $bgLinks;
+    color: $textColor;
+  
+  &:hover{
+    border-radius: 6px;
+    color: $hoverColor;
+  }
+  &:after {
+    content: "";
+    background: $hoverColor;
+    display: block;
+    position: absolute;
+    padding-top: 300%;
+    padding-left: 350%;
+    margin-left: -20px !important;
+    margin-top: -120%;
+    opacity: 0;
+    transition: all 0.8s
+  }
+  &:active:after {
+    padding: 0;
+    margin: 0;
+    opacity: 1;
+    transition: 0s
+  }
+  &:active, &:focus {
+    outline: none;
+  }
+  &::-moz-focus-inner {
+    border: 0;
+  }
+}
