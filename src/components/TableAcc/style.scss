@@ -1,0 +1,15 @@
+@import "../../styles/mixins.scss";
+@import "../../styles/variables.scss";
+.tableBlock{ 
+  text-align: center;
+}
+.cellBlock{
+   display: flex;
+   width: 100%;
+}
+.tableCell{
+ 
+  width: 100%;
+  background-color: inherit;
+  color: #ffffffff;
+}

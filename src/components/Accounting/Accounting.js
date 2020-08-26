@@ -1,11 +1,12 @@
 import React, { useState, useCallback } from 'react';
+import TableAcc from '../TableAcc/TableAcc';
 import "./style.scss";
 import { connect } from 'react-redux';
-import { createCategory } from '../../redux/actions';
+import { createCategory, createSalary } from '../../redux/actions';
 import { Button, InputGroup, FormControl, Form } from 'react-bootstrap';
 
 const Accounting = (props) => {
-  console.log(props);
+
   const [salary, setSalary] = useState("");
   const [checkedCategories, setCheckedCategories] = useState([]);
   const [isFormFull, setIsFormFull] = useState(false);
@@ -13,8 +14,8 @@ const Accounting = (props) => {
   const [categories, setCategories] =
     useState(["Food", "Education", "City transport", "Car", "Hobby", "Clothes"]);
   const handleCreateTable = useCallback(() => {
-    console.log(checkedCategories, 'acc');
     props.createCategory(checkedCategories);
+    props.createSalary(salary);
     if (salary) setIsFormFull(true);
   }, [salary, checkedCategories, props]);
 
@@ -30,9 +31,9 @@ const Accounting = (props) => {
 
   return (
     <>
-      <section className="accounting">
+      {!isFormFull && <section className="accounting">
 
-        {!isFormFull && <InputGroup value={salary} onChange=
+        <InputGroup value={salary} onChange=
           {({ target: { value } }) => setSalary(value)}>
           <FormControl
             type="number"
@@ -41,7 +42,7 @@ const Accounting = (props) => {
             max="999999999999"
             aria-label="Your salary for mounth"
             aria-describedby="basic-addon2" />
-        </InputGroup>}
+        </InputGroup>
         <InputGroup className="selectCategoryBlock">
           <label>
             Select the categories of your spending</label>
@@ -68,14 +69,15 @@ const Accounting = (props) => {
           <Button variant="secondary" className="addBtn" onClick={handleAddCategory}>Добавить</Button>
         </InputGroup>
         <button className="createBtn" onClick={handleCreateTable}>Create table</button>
-        {isFormFull && <h1>1</h1>}
-      </section>
+      </section>}
+      {isFormFull && <TableAcc />}
     </>
 
   );
 };
 const mapDispatchToProps = {
-  createCategory
+  createCategory: createCategory,
+  createSalary: createSalary,
 };
 
 export default connect(null, mapDispatchToProps)(Accounting);
