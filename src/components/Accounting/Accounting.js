@@ -2,8 +2,8 @@ import React, { useState, useCallback } from 'react';
 import TableAcc from '../TableAcc/TableAcc';
 import "./style.scss";
 import { connect } from 'react-redux';
-import { createCategory, createSalary } from '../../redux/actions';
-import { Button, InputGroup, FormControl, Form } from 'react-bootstrap';
+import { createCategory, createSalary, showAlert } from '../../redux/actions';
+import { Button, InputGroup, FormControl, Form, Alert } from 'react-bootstrap';
 
 const Accounting = (props) => {
 
@@ -16,7 +16,7 @@ const Accounting = (props) => {
   const handleCreateTable = useCallback(() => {
     props.createCategory(checkedCategories);
     props.createSalary(salary);
-    if (salary) setIsFormFull(true);
+    salary ? setIsFormFull(true) : props.showAlert("Введите вашу зарплату");
   }, [salary, checkedCategories, props]);
 
   const handleAddCategory = useCallback(() => {
@@ -43,6 +43,9 @@ const Accounting = (props) => {
             aria-label="Your salary for mounth"
             aria-describedby="basic-addon2" />
         </InputGroup>
+        {props.alert && <Alert variant='warning'>
+          {props.alert}
+        </Alert>}
         <InputGroup className="selectCategoryBlock">
           <label>
             Select the categories of your spending</label>
@@ -78,6 +81,7 @@ const Accounting = (props) => {
 const mapDispatchToProps = {
   createCategory: createCategory,
   createSalary: createSalary,
+  showAlert: showAlert,
 };
-
-export default connect(null, mapDispatchToProps)(Accounting);
+const mapStateToProps = state => ({ alert: state.app.alert })
+export default connect(mapStateToProps, mapDispatchToProps)(Accounting);

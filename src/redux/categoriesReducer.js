@@ -1,8 +1,9 @@
-import { CREATE_CATEGORY, CREATE_SALARY } from "./types";
+import { CREATE_CATEGORY, CREATE_SALARY, CREATE_LOCATION } from "./types";
 
 const initialState = {
   categories: [],
-  salary: ""
+  salary: "",
+  locations: []
 };
 export const categoriesReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -11,6 +12,8 @@ export const categoriesReducer = (state = initialState, action) => {
       return { ...state, categories: state.categories.concat([action.payload]) }
     case CREATE_SALARY:
       return { ...state, salary: state.salary.concat([action.payload]) }
+    case CREATE_LOCATION:
+      return { ...state, locations: action.payload }
     default: return state
 
   }

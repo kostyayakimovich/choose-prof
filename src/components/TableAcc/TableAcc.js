@@ -1,10 +1,15 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { connect } from 'react-redux';
+import { connect, useDispatch, useSelector } from 'react-redux';
 import { getDaysArray } from './getDaysArray';
 import "./style.scss";
-import { Table, Button } from 'react-bootstrap';
+import { Table, Button, Spinner } from 'react-bootstrap';
+import { createLocation } from "../../redux/actions";
 
 const TableAcc = ({ category, salary }) => {
+  const dispatch = useDispatch();
+  const location = useSelector(state => state.categories.locations);
+  console.log(location);
+  const loading = useSelector(state => state.app.loading);
   const [headerTable, setHeaderTable] = useState([]);
   const [countMounthDays, setCountMounthDays] = useState([]);
   const [countCol, setCountCol] = useState([]);
@@ -62,7 +67,8 @@ const TableAcc = ({ category, salary }) => {
 
 
         <button onClick={handleClick}>cl</button>
-
+        <button onClick={() => dispatch(createLocation())}>ASYNC</button>
+        {loading && <Spinner animation="border" variant="primary" />}
       </section>
     </>
 
